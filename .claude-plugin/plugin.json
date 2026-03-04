@@ -1,0 +1,18 @@
+{
+  "name": "semantic-search",
+  "version": "1.0.0",
+  "description": "Hybrid code search combining claude-context semantic search with Grep for comprehensive codebase exploration and safe code modification.",
+  "author": {
+    "name": "devminseok"
+  },
+  "keywords": [
+    "search",
+    "semantic-search",
+    "claude-context",
+    "code-exploration",
+    "grep",
+    "hybrid-search",
+    "codebase",
+    "impact-analysis"
+  ]
+}
