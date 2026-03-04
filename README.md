@@ -9,21 +9,31 @@ A hybrid code search plugin that combines claude-context semantic search with Gr
 - **Hybrid Strategy**: Automatically combines tools based on query type
 - **Code Modification Safety Net**: Impact analysis before changes, completeness checks after
 
-## Prerequisites: claude-context MCP Server
+## Quick Start
 
-This plugin requires [claude-context](https://github.com/zilliztech/claude-context).
+### 1. Install the plugin
 
-### Codebase Indexing
+```bash
+# Add the marketplace
+/plugin marketplace add devminseok/claude-sementic-search
 
-After setting up the MCP server, index the target codebase:
+# Install the plugin
+/plugin install semantic-search@devminseok-plugins
+```
+
+### 2. Set up claude-context MCP server
+
+This plugin requires [claude-context](https://github.com/zilliztech/claude-context). Follow its setup instructions to add it as an MCP server.
+
+### 3. Index your codebase
 
 ```
 mcp__claude-context__index_codebase(path="/absolute/path/to/codebase")
 ```
 
-## Usage
+### 4. Start searching
 
-Automatically triggered when asking questions about the codebase or requesting code modifications.
+Just ask questions about your codebase — the plugin triggers automatically.
 
 ```
 "Where is the booking confirmation logic?"    → Semantic search first
@@ -35,9 +45,6 @@ Automatically triggered when asking questions about the codebase or requesting c
 
 ```
 sementic-search-plugin/
-├── .claude-plugin/
-│   └── plugin.json
-├── README.md
 └── skills/
     └── semantic-search/
         ├── SKILL.md                  # Main skill definition
