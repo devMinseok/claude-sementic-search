@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "Hybrid code search combining claude-context semantic search with Grep for comprehensive codebase exploration and safe code modification.",
   "author": {
-    "name": "devminseok"
+    "name": "devminseok",
+    "url": "https://github.com/devminseok"
   },
+  "homepage": "https://github.com/devminseok/claude-sementic-search",
+  "repository": "https://github.com/devminseok/claude-sementic-search",
+  "license": "MIT",
   "keywords": [
     "search",
     "semantic-search",
