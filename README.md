@@ -15,7 +15,7 @@ A hybrid code search plugin that combines claude-context semantic search with Gr
 
 ```bash
 # Add the marketplace
-/plugin marketplace add devminseok/claude-sementic-search
+/plugin marketplace add https://github.com/devMinseok/claude-sementic-search
 
 # Install the plugin
 /plugin install semantic-search@devminseok-plugins
