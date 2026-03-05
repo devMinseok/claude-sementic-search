@@ -3,15 +3,17 @@
   "description": "A collection of Claude Code plugins by devminseok.",
   "owner": {
     "name": "devminseok",
-    "url": "https://github.com/devminseok"
+    "email": "qbq5000@gmail.com"
   },
   "plugins": [
     {
       "name": "semantic-search",
       "description": "Hybrid code search combining claude-context semantic search with Grep for comprehensive codebase exploration and safe code modification.",
-      "source": {
-        "source": "github",
-        "repo": "devminseok/claude-sementic-search"
+      "version": "1.0.0",
+      "source": "./",
+      "author": {
+        "name": "devminseok",
+        "email": "qbq5000@gmail.com"
       }
     }
   ]

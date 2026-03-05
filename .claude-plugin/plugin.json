@@ -4,7 +4,7 @@
   "description": "Hybrid code search combining claude-context semantic search with Grep for comprehensive codebase exploration and safe code modification.",
   "author": {
     "name": "devminseok",
-    "url": "https://github.com/devminseok"
+    "email": "qbq5000@gmail.com"
   },
   "homepage": "https://github.com/devminseok/claude-sementic-search",
   "repository": "https://github.com/devminseok/claude-sementic-search",
