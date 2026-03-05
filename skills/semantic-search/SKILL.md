@@ -48,8 +48,50 @@ mcp__claude-context__get_indexing_status(path="/absolute/path/to/codebase")
 ```
 
 - Indexed → proceed to Phase 2
-- Not indexed → ask user whether to index with `index_codebase`
+- Not indexed → proceed to Phase 1.5 (Exclusion Analysis)
 - Multiple codebases → check each status
+
+### Phase 1.5: Pre-Index Exclusion Analysis
+
+**When codebase is not indexed, analyze the project BEFORE indexing.** This improves search quality by excluding irrelevant files.
+
+claude-context automatically excludes: `.gitignore` patterns, `node_modules/`, `dist/`, `build/`, `.git/`, `.vscode/`, `.idea/`, `__pycache__/`, `.env`, `*.min.js`, `*.map`, etc.
+
+**Focus only on finding exclusion candidates NOT already covered by defaults or `.gitignore`.**
+
+#### Step 1: Scan Project Structure
+
+```bash
+# Find large directories that may need exclusion
+du -sh /path/to/codebase/*/ 2>/dev/null | sort -rh | head -20
+```
+
+#### Step 2: Identify Additional Exclusion Candidates
+
+Look for items **not covered** by defaults or `.gitignore`:
+
+| Category | Examples |
+|----------|----------|
+| Large data files | `*.csv`, `*.sql`, large `*.json` |
+| Generated code | `*.generated.*`, `*.pb.go` |
+| Test fixtures / snapshots | `fixtures/`, `__snapshots__/`, `testdata/` |
+| Legacy / archived code | `docs/legacy/`, `old/`, `deprecated/` |
+| Vendored dependencies | `third_party/`, `external/` |
+
+#### Step 3: Present & Index
+
+Summarize recommended additional exclusions and ask the user to confirm. Then index:
+
+```
+mcp__claude-context__index_codebase(
+  path="/absolute/path/to/codebase",
+  ignorePatterns=["fixtures/**", "*.csv", "docs/legacy/**"]
+)
+```
+
+For persistent exclusions, recommend creating a `.contextignore` file in the codebase root instead.
+
+**Re-indexing:** To update exclusions on an already-indexed codebase, use `force=true`.
 
 ### Phase 2: Choose Search Strategy
 
@@ -141,3 +183,5 @@ digraph before_mod {
 | Skip search before code changes | Always analyze impact scope first |
 | Search one codebase only | Search all indexed codebases in parallel |
 | Ignore cross-codebase interactions | API ↔ booking server calls — check both sides |
+| Index without exclusion analysis | Always scan project structure and present exclusion plan before first index |
+| Forget .gitignore is auto-respected | Don't duplicate .gitignore patterns in ignorePatterns |
